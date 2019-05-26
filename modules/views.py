@@ -80,7 +80,7 @@ class Directory:
         else:
             generated_response['Result'] = "Fail; The contact prospect does not meet the minimum requirements"
 
-        return "Hola"
+        return generated_response
 
 
 @staticmethod
