@@ -2,6 +2,7 @@
 template_json = {
                  "id_type": "",
                  "id": "",
+                 "expedition_date":"",
                  "first_names": "",
                  "second_names": "",
                  "phone_number": "",
@@ -13,6 +14,7 @@ template_json = {
 example_template = {
         "id_type": "cc",
         "id": "asdasd",
+        "expedition_date": "25/09/2009",
         "first_names": "Adriana Fernanda",
         "second_names": "Moya Forero",
         "phone_number": "31456788",

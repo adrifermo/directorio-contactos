@@ -1,22 +1,12 @@
-from random import randint
+import random
+
 
 class Helpers:
     @staticmethod
-    def validate_data(self, contact):
-        return True
+    def validate_data(contact):
+        return random.choice([True, False])
 
     @staticmethod
-    def validate_background(self, contact):
-        return True
+    def validate_background(contact):
+        return random.choice([True, False])
 
-    @staticmethod
-    def addi_internal_validation(self):
-
-        """
-        Score classification service for future
-        :param self:
-        :param
-        :return: Random number between 0 and 100
-        """
-        random_number = randint(0, 100)
-        return random_number
