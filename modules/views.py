@@ -17,38 +17,8 @@ class Directory:
             raise BadRequest("Bad Request Error - Body "
                              "not satisfied the requirements", 4001)
 
-        # Validate request body
-        # Validate ID Type Provided
-        doc_types = ['CC', 'TI', 'CE', 'PA', 'RC']
-
-        doc_type = contact["id_type"]
-        id_provided = contact["id"]
-        expedition_date = contact["expedition_date"]
-
-        if doc_type.upper() not in doc_types:
-            raise BadRequest("Bad Request Error -  Id Type provided"
-                             "doesn't exist in Colombia", 4002)
-
-        # Validate content of ID provided
-        if doc_type is 'CC' or 'TI' or 'RC':
-            if not id_provided.isdigit():
-                raise BadRequest("Bad Request Error -  Id provided doesn't match with the rules, please "
-                                 "fill id value without special characters or letters", 4003)
-        else:
-            if id_provided.isalphnum() or id_provided.isdigit():
-                raise BadRequest("Bad Request Error -  Id provided doesn't match with the rules, please fill id value"
-                                 " without special characters", 4004)
-
-        # Validate number of digits on ID
-        if not 7 < len(id_provided) < 20:
-            raise BadRequest("Bad Request Error -  The number of digits in id provided is suspect",
-                             4005)
-
-        # Validate expedition date of id
-        try:
-            date_time_obj = datetime.datetime.strptime(expedition_date, '%d/%m/%Y')
-        except:
-            raise BadRequest("Bad Request Error - The date provided not match with the format %d/%m/%Y", 4006)
+        # Validate body content
+        body_validation(contact)
 
         # 1st Step: Validate if the data filled is correct
         correct_data = Helpers.validate_data(contact)
@@ -83,7 +53,6 @@ class Directory:
         return generated_response
 
 
-@staticmethod
 def addi_internal_validation():
 
     """
@@ -94,3 +63,41 @@ def addi_internal_validation():
     """
     random_number = randint(0, 100)
     return random_number
+
+
+def body_validation(contact):
+
+    # Validate request body
+    # Validate ID Type Provided
+    doc_types = ['CC', 'TI', 'CE', 'PA', 'RC']
+
+    doc_type = contact["id_type"]
+    id_provided = contact["id"]
+    expedition_date = contact["expedition_date"]
+
+    if doc_type.upper() not in doc_types:
+        raise BadRequest("Bad Request Error -  Id Type provided"
+                         "doesn't exist in Colombia", 4002)
+
+    # Validate content of ID provided
+    if doc_type is 'CC' or 'TI' or 'RC':
+        if not id_provided.isdigit():
+            raise BadRequest("Bad Request Error -  Id provided doesn't match with the rules, please "
+                             "fill id value without special characters or letters", 4003)
+    else:
+        if id_provided.isalphnum() or id_provided.isdigit():
+            raise BadRequest("Bad Request Error -  Id provided doesn't match with the rules, please fill id value"
+                             " without special characters", 4004)
+
+    # Validate number of digits on ID
+    if not 7 < len(id_provided) < 20:
+        raise BadRequest("Bad Request Error -  The number of digits in id provided is suspect",
+                         4005)
+
+    # Validate expedition date of id
+    try:
+        date_time_obj = datetime.datetime.strptime(expedition_date, '%d/%m/%Y')
+    except:
+        raise BadRequest("Bad Request Error - The date provided not match with the format %d/%m/%Y", 4006)
+
+    return True

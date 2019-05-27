@@ -13,7 +13,7 @@ template_json = {
 
 example_template = {
         "id_type": "cc",
-        "id": "asdasd",
+        "id": "12345678",
         "expedition_date": "25/09/2009",
         "first_names": "Adriana Fernanda",
         "second_names": "Moya Forero",
