@@ -30,16 +30,10 @@ def insert_new_contact():
 
 @app.route('/validate_data', methods=['POST'])
 def validate_data():
-    #modify_data = random.choice([True, False])
-    modify_data = True
-    if modify_data:
-        contract = request.data.get
-        resp = {"background": modify_data}
-    else:
-        resp = {"background": modify_data}
+    is_valid = random.choice([True, False])
 
     response = app.response_class(
-        response=json.dumps(),
+        response=json.dumps({"is_valid": is_valid}),
         status=200,
         mimetype='application/json'
     )

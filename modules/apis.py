@@ -11,7 +11,7 @@ class Helpers:
             data = json.dumps(contact)
             result = requests.post(url, data=data)
             response = json.loads(result.text)
-            return response['background']
+            return response['is_valid']
         except:
             raise BadRequest("Was not possible to connect to the API", 4007)
 
